@@ -208,6 +208,10 @@ METHODS = {
         "model": partial(modules.MAE, img_size=input_size),
         "transform": transforms.MAETransform(input_size=input_size),
     },
+    "amae": {
+        "model": partial(modules.AMAE, img_size=input_size),
+        "transform": [transforms.MAETransform(input_size=input_size), transforms.MAE_AdditionalTransform(input_size=input_size)]
+    },
 }
 
 
@@ -467,17 +471,17 @@ def pretrain(
         val_dataloaders=val_dataloader,
         ckpt_path=ckpt_path,
     )
-    if target_modality is not None and not debug:
-        if val_dataloader is None:
-            for metric in ["train_online_cls_top1", "train_online_cls_top5"]:
-                print_rank_zero(
-                    f"max {metric}: {max(metric_callback.train_metrics[metric])}"
-                )
-        else:
-            for metric in ["val_online_cls_top1", "val_online_cls_top5"]:
-                print_rank_zero(
-                    f"max {metric}: {max(metric_callback.val_metrics[metric])}"
-                )
+    # if target_modality is not None and not debug:
+    #     if val_dataloader is None:
+    #         for metric in ["train_online_cls_top1", "train_online_cls_top5"]:
+    #             print_rank_zero(
+    #                 f"max {metric}: {max(metric_callback.train_metrics[metric])}"
+    #             )
+    #     else:
+    #         for metric in ["val_online_cls_top1", "val_online_cls_top5"]:
+    #             print_rank_zero(
+    #                 f"max {metric}: {max(metric_callback.val_metrics[metric])}"
+    #             )
     wandb.finish()
 
 

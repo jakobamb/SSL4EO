@@ -6,7 +6,7 @@ from .barlowtwins import (
 )
 from .base import to_tensor
 from .byol import BYOLTransform, BYOLView1Transform, BYOLView2Transform
-from .mae import MAETransform
+from .mae import MAETransform, MAE_AdditionalTransform
 from .simclr import SimCLRTransform
 from .vicreg import VICRegTransform
 
@@ -20,6 +20,7 @@ __all__ = [
     "MAETransform",
     "SimCLRTransform",
     "VICRegTransform",
+    "MAE_AdditionalTransform",
     "to_tensor"
 ]
 

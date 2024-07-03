@@ -4,4 +4,6 @@ from .mae import MAE
 from .simclr import SimCLR
 from .vicreg import VICReg
 
-__all__ = ["BarlowTwins", "BYOL", "MAE", "SimCLR", "VICReg"]
+from .amae import AMAE
+
+__all__ = ["BarlowTwins", "BYOL", "MAE", "SimCLR", "VICReg", "AMAE"]
